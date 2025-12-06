@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaskFlow - Personal Task Manager</title>
+
+  <!-- Bootstrap, Icons, AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar d-none d-lg-flex flex-column" id="sidebar">
+    <div class="sidebar-brand mb-4">
+      <h4 class="mb-0">
+        <i class="bi bi-list-check me-2"></i>TaskFlow
+      </h4>
+    </div>
+    <nav>
+      <a href="dashboard.html">
+        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+      </a>
+      <a href="tasks.html">
+        <i class="bi bi-card-checklist me-2"></i>Tasks
+      </a>
+      <a href="projects.html">
+        <i class="bi bi-folder me-2"></i>Projects
+      </a>
+      <a href="profile.html" class="active">
+        <i class="bi bi-person-circle me-2"></i>Profile
+      </a>
+    </nav>
+    <div class="sidebar-footer mt-auto pt-3">
+      <button id="darkToggle" class="btn btn-sm btn-light w-100 mb-2">
+        <i class="bi bi-moon-stars me-2"></i>Dark mode
+      </button>
+      <button id="logoutBtnSide" class="btn btn-sm btn-outline-light w-100">
+        <i class="bi bi-box-arrow-right me-2"></i>Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Topbar for mobile -->
+  <nav class="navbar topbar d-lg-none navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="dashboard.html">
+        <i class="bi bi-list-check me-2"></i>TaskFlow
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mobileNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="tasks.html">Tasks</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" href="profile.html">Profile</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button id="darkToggleMobile" class="btn btn-sm btn-outline-secondary">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+          <button id="logoutBtnTop" class="btn btn-sm btn-outline-danger">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h2 data-aos="fade-right" class="mb-1">Profile</h2>
+          <p class="text-muted mb-0">Manage your TaskFlow profile and preferences.</p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <!-- Profile card -->
+        <div class="col-12 col-lg-4" data-aos="fade-up">
+          <div class="card p-4 text-center h-100">
+            <div class="mb-3">
+              <img id="profileAvatar" class="avatar-lg rounded-circle border" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&q=60&auto=format&fit=crop" alt="Avatar">
+            </div>
+            <h5 id="profileNameDisplay" class="mb-1">Muhammad Naim bin Sazali</h5>
+            <div id="profileEmailDisplay" class="small text-muted mb-2">nmuhd0033@gmail.com</div>
+            <p id="profileBioDisplay" class="small mb-3">
+              Information System Management Student - Personal Task Manager Project
+            </p>
+            <div class="small text-muted">
+              Changes made here are stored locally in your browser.
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit form -->
+        <div class="col-12 col-lg-8" data-aos="fade-left">
+          <div class="card p-4 h-100">
+            <h5 class="mb-3">Edit profile</h5>
+            <form id="profileForm">
+              <div class="mb-3">
+                <label for="profileName" class="form-label">Full name</label>
+                <input type="text" id="profileName" class="form-control" value="Muhammad Naim bin Sazali" required>
+              </div>
+              <div class="mb-3">
+                <label for="profileEmail" class="form-label">Email</label>
+                <input type="email" id="profileEmail" class="form-control" value="nmuhd0033@gmail.com" required>
+              </div>
+              <div class="mb-3">
+                <label for="profileBio" class="form-label">Short bio</label>
+                <textarea id="profileBio" class="form-control" rows="3">Information System Management Student - Personal Task Manager Project</textarea>
+              </div>
+              <div class="mb-3">
+                <label for="avatarUrl" class="form-label">Avatar image URL (optional)</label>
+                <input type="url" id="avatarUrl" class="form-control" placeholder="Paste an image URL if you want to use your own photo">
+                <div class="form-text">
+                  Leave empty to use the default avatar. Any URL you save will be used across the app.
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-save me-2"></i>Save profile
+                </button>
+                <button type="button" id="resetProfile" class="btn btn-outline-secondary btn-sm">
+                  Reset to default
+                </button>
+              </div>
+            </form>
+
+            <hr class="my-4">
+
+            <div class="small text-muted">
+              Note: This TaskFlow profile is for this demo only. All data (profile, tasks, projects) is stored using
+              <code>localStorage</code> in your browser.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer-bar text-center small mt-4">
+        <span id="year2"></span> TaskFlow - IMS566 Personal Task Manager
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+  </script>
+
+  <script src="script.js"></script>
+  <script>
+    // Footer year
+    document.getElementById('year2').textContent = new Date().getFullYear();
+
+    // Logout
+    const logoutSide = document.getElementById('logoutBtnSide');
+    const logoutTop = document.getElementById('logoutBtnTop');
+    function doLogout(){
+      localStorage.removeItem('tm_user');
+      window.location.href = 'login.html';
+    }
+    if (logoutSide) logoutSide.addEventListener('click', doLogout);
+    if (logoutTop) logoutTop.addEventListener('click', doLogout);
+
+    // Initial app setup (dark mode, demo data, etc.)
+    initialPageSetup();
+
+    // Hook mobile dark mode to same toggle
+    const darkToggleMobile = document.getElementById('darkToggleMobile');
+    if (darkToggleMobile && typeof toggleDarkMode === 'function'){
+      darkToggleMobile.addEventListener('click', toggleDarkMode);
+    }
+
+    // ----- Profile localStorage handling -----
+    const defaultProfile = {
+      name: 'Muhammad Naim bin Sazali',
+      email: 'nmuhd0033@gmail.com',
+      bio: 'Information System Management Student - Personal Task Manager Project',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&q=60&auto=format&fit=crop'
+    };
+
+    function loadProfile(){
+      const stored = JSON.parse(localStorage.getItem('tm_profile') || 'null');
+      const profile = stored || defaultProfile;
+
+      // Set form values
+      document.getElementById('profileName').value = profile.name;
+      document.getElementById('profileEmail').value = profile.email;
+      document.getElementById('profileBio').value = profile.bio || '';
+      document.getElementById('avatarUrl').value = stored && stored.avatar ? stored.avatar : '';
+
+      // Set display values
+      document.getElementById('profileNameDisplay').textContent = profile.name;
+      document.getElementById('profileEmailDisplay').textContent = profile.email;
+      document.getElementById('profileBioDisplay').textContent = profile.bio || '';
+
+      const avatarImg = document.getElementById('profileAvatar');
+      avatarImg.src = profile.avatar || defaultProfile.avatar;
+
+      // Also update global avatar storage, so dashboard top avatar matches
+      localStorage.setItem('tm_avatar', profile.avatar || defaultProfile.avatar);
+    }
+
+    function saveProfile(e){
+      e.preventDefault();
+      const name = document.getElementById('profileName').value.trim();
+      const email = document.getElementById('profileEmail').value.trim();
+      const bio = document.getElementById('profileBio').value.trim();
+      const avatar = document.getElementById('avatarUrl').value.trim();
+
+      if (!name || !email){
+        alert('Name and email are required.');
+        return;
+      }
+
+      const profile = {
+        name,
+        email,
+        bio,
+        avatar: avatar || defaultProfile.avatar
+      };
+      localStorage.setItem('tm_profile', JSON.stringify(profile));
+      localStorage.setItem('tm_avatar', profile.avatar);
+
+      // If user is logged in, update tm_user name/email
+      const session = JSON.parse(localStorage.getItem('tm_user') || 'null');
+      if (session){
+        localStorage.setItem('tm_user', JSON.stringify({
+          email: profile.email,
+          name: profile.name
+        }));
+      }
+
+      loadProfile();
+      alert('Profile saved.');
+    }
+
+    function resetProfile(){
+      localStorage.removeItem('tm_profile');
+      localStorage.setItem('tm_avatar', defaultProfile.avatar);
+      loadProfile();
+      alert('Profile reset to default.');
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', saveProfile);
+    document.getElementById('resetProfile').addEventListener('click', resetProfile);
+
+    // Load profile on page load
+    loadProfile();
+  </script>
+</body>
+</html>

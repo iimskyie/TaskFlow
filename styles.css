@@ -1,0 +1,210 @@
+/* ---------- Base & layout ---------- */
+
+:root{
+  --accent: #6d28d9;            /* purple-ish primary */
+  --muted: #6b7280;
+  --card: rgba(255,255,255,0.95);
+  --glass: rgba(255,255,255,0.6);
+  --text-main: #111827;
+  --text-muted: #6b7280;
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  background: linear-gradient(135deg,#ede9fe 0%, #e0f2fe 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color:var(--text-main);
+}
+
+/* Dark mode */
+:root.dark-mode {
+  --card: rgba(15,23,42,0.95);
+  --glass: rgba(15,23,42,0.8);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  background: radial-gradient(circle at top, #020617 0%, #030712 60%, #020617 100%);
+  color:var(--text-main);
+}
+
+.dark-mode body { background: none; }
+.dark-mode .card { background: var(--card); color: var(--text-main); }
+.dark-mode .sidebar { background: #111827; color:var(--text-main); }
+.dark-mode .topbar { background: rgba(15,23,42,0.95); }
+.dark-mode .sidebar a { color: #e5e7eb; }
+.dark-mode .sidebar a.active { background: rgba(148,163,184,0.3); }
+.dark-mode .sidebar a:hover { background: rgba(148,163,184,0.2); }
+.dark-mode .navbar,
+.dark-mode .navbar .nav-link,
+.dark-mode .navbar-brand { color: var(--text-main) !important; }
+.dark-mode .table { color: var(--text-main); }
+.dark-mode .table tbody tr:hover { background: rgba(148,163,184,0.15); }
+
+/* ---------- Sidebar ---------- */
+
+.sidebar{
+  width:250px;
+  background:var(--accent);
+  color:white;
+  position:fixed;
+  top:0; left:0; bottom:0;
+  padding:22px;
+  display:flex; flex-direction:column;
+}
+
+.sidebar .sidebar-brand h4{ color:#fff; }
+
+.sidebar nav{ margin-top:6px; }
+
+.sidebar a{
+  color:rgba(255,255,255,0.9);
+  display:block;
+  padding:10px 8px;
+  border-radius:8px;
+  text-decoration:none;
+  margin-bottom:6px;
+}
+
+.sidebar a:hover{
+  background: rgba(255,255,255,0.06);
+  transform:translateX(6px);
+  transition:all .18s;
+}
+
+.sidebar a.active{
+  background: rgba(255,255,255,0.16);
+  font-weight:600;
+}
+
+.sidebar-footer{ margin-top:auto; }
+
+/* ---------- Topbar (mobile) ---------- */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+/* ---------- Content ---------- */
+
+.content{
+  margin-left:270px;
+  padding:28px;
+  min-height:100vh;
+}
+
+@media (max-width:991px){
+  .content{ margin-left:0; padding:16px }
+  .sidebar{ display:none }
+}
+
+/* ---------- Cards ---------- */
+
+.card{
+  background:var(--card);
+  border:none;
+  border-radius:14px;
+  padding:12px;
+  box-shadow: 0 6px 20px rgba(13,30,64,0.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(13,30,64,0.12);
+}
+
+/* ---------- Auth pages (login/register) ---------- */
+
+.auth-bg{
+  background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.auth-center{
+  width:100%;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.auth-card{
+  width:100%;
+  max-width:480px;
+  border-radius:16px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(8px);
+}
+
+.auth-footer{
+  color:rgba(17,24,39,0.7);
+}
+
+/* ---------- avatars ---------- */
+
+.avatar-sm{
+  width:44px;
+  height:44px;
+  object-fit:cover;
+}
+
+.avatar-lg{
+  width:130px;
+  height:130px;
+  object-fit:cover;
+}
+
+/* ---------- tables ---------- */
+
+.table thead th{ border-bottom:0; }
+
+.table tbody tr:hover{
+  background: rgba(109,40,217,0.06);
+  transform: translateX(0);
+}
+
+/* ---------- buttons ---------- */
+
+.btn{ border-radius:10px; }
+
+.btn-primary{
+  background:var(--accent);
+  border:none;
+}
+
+.btn-primary:hover{
+  background:#5b21b6;
+}
+
+.btn-success{
+  background:#22c55e;
+  border:none;
+}
+
+/* ---------- Utilities ---------- */
+
+.small{ font-size:.85rem; }
+
+.display-6{ font-size:1.8rem; }
+
+/* footer */
+
+.footer-bar{ padding:18px 0; }
+
+/* responsive tweaks */
+
+@media (max-width:575px){
+  .auth-card{ margin:12px; width:100% }
+}

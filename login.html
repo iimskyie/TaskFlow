@@ -139,14 +139,12 @@
         const isDemoFixed =
           (email === DEMOUSER.email.toLowerCase() && pw === DEMOUSER.password);
 
+        // For very first time demo login, ensure demo data exists.
         if (isDemoFixed) {
-          // Only for fixed demo: reset and preload sample data
-          localStorage.removeItem('tm_tasks');
-          localStorage.removeItem('tm_projects');
           initDemoData();
         }
-        // Registered users: do NOT clear tasks/projects here,
-        // so their data persists across logins.
+        // IMPORTANT: we do NOT clear tm_tasks/tm_projects for any account here,
+        // so all tasks/projects stay in localStorage between logins.
 
         // Save session user (for header/profile)
         localStorage.setItem('tm_user', JSON.stringify({ email: emailInput, name }));
